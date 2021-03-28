@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block body %}
+    <h1>Results for '{{query}}':</h1>
+    <hr>
+    <ul>
+        {% if match_list %}
+            {% for entry in match_list %}
+            <li style="font-size:20px"><a href="{% url 'encyclopedia:subPage' title=entry %}">{{entry}}</a></li>
+            {% endfor %}
+        {% else %}
+            <p>{{ error_msg }}</p>
+        {% endif %}
+    </ul>
+{% endblock %}
