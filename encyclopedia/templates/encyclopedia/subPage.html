@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if error_msg  %}
+        Error
+    {% else %}
+        {{ title }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if error_msg %}
+        <h1>Error:</h1><hr>
+        <h2>{{ title }}</h2>
+        <br>
+        <p>{{ error_msg }}</p>
+    {% else %}
+        {{ body | safe }}
+        <form method="get" action="{% url 'encyclopedia:edit' title=title %}">
+            <input type="submit" value='Edit'>
+        </form>
+    {% endif %}
+{% endblock %}
